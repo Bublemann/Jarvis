@@ -6,6 +6,7 @@ The bot communicates with an LLM model hosted on a server, capable of generating
 
 
 I used docker compose to run in but it has a private token so here just the skeleton:
+```
 services:
   llm_server:
     build:
@@ -32,4 +33,4 @@ services:
       - DISCORD_BOT_TOKEN=DISCORD_BOT_TOKEN
     depends_on:
       - llm_server
-
+```
