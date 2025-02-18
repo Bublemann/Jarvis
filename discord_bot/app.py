@@ -1,22 +1,21 @@
 import discord
-from discord.ext import commands
-import httpx
-import asyncio
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 
-bot = commands.Bot(command_prefix="!", intents=discord.Intents.default())
+class Client(discord.Client):
+    async def on_message(self, message):
+        if message.author == self.user:
+            return
+        if message.content.startswith('hello'):
+            await message.channel.send(f'Hi there {message.author}')
+        if message.content.startswith('Jarvis') or message.content.startswith('jarvis'):
+            await message.channel.send(f'I am Iron Man')
 
-async def generate_response(prompt):
-    async with httpx.AsyncClient() as client:
-        response = await client.post("http://llm_server:8000/generate", json={"prompt": prompt})
-        return response.json()["response"]
+intents = discord.Intents.default()
+intents.message_content = True
 
-@bot.command()
-async def ask(ctx, *, prompt):
-    await ctx.send("Thinking... 🤔")
-    response = await generate_response(prompt)
-    await ctx.send(f"🤖 Answer: {response}")
-
-bot.run(TOKEN)
+client = Client(intents=intents)
+client.run(TOKEN)
