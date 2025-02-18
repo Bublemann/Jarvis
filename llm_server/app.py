@@ -4,7 +4,6 @@ import torch
 
 app = FastAPI()
 
-# Modell laden
 model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
 
 pipeline = transformers.pipeline(

@@ -15,8 +15,8 @@ async def generate_response(prompt):
 
 @bot.command()
 async def ask(ctx, *, prompt):
-    await ctx.send("Denke nach... 🤔")
+    await ctx.send("Thinking... 🤔")
     response = await generate_response(prompt)
-    await ctx.send(f"🤖 Antwort: {response}")
+    await ctx.send(f"🤖 Answer: {response}")
 
 bot.run(TOKEN)

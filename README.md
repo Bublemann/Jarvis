@@ -5,7 +5,8 @@ Jarvis is an advanced AI-powered Discord bot built to interact with a large lang
 The bot communicates with an LLM model hosted on a server, capable of generating text based on a variety of prompts. Whether you're looking for casual conversations or more complex problem-solving assistance, Jarvis is designed to provide useful and engaging interactions.
 
 
-I used docker compose to run in but it has a private token so here just the skeleton:
+I used Docker Compose to run the application, but since it requires a private token, here is just the basic skeleton:
+Filename: `docker-compose.yml`
 ```
 services:
   llm_server:
