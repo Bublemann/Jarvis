@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 import transformers
 import torch
 
@@ -13,8 +14,12 @@ pipeline = transformers.pipeline(
     device_map="cuda",
 )
 
+class PromptRequest(BaseModel):
+    prompt: str
+
 @app.post("/generate")
-async def generate(prompt: str):
+async def generate(request: PromptRequest):
+    prompt = request.prompt
     message = [
         {"role": "user", "content": prompt},
     ]
