@@ -2,11 +2,9 @@ FROM python:3.10
 
 WORKDIR /app
 
-RUN pip install discord.py httpx
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY app.py /app/app.py
-
-ENV DISCORD_BOT_TOKEN="DEIN_DISCORD_TOKEN"
-ENV PIP_ROOT_USER_ACTION=ignore
+COPY . /app
 
 CMD ["python", "app.py"]

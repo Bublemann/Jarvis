@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 
-LLM_SERVER_URL = "http://localhost:8000"
+LLM_SERVER_URL = "http://llm_server:8000"
 
 class Bot(discord.Client):
     async def on_message(self, message):
